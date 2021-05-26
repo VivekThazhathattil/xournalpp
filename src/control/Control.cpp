@@ -468,6 +468,9 @@ void Control::actionPerformed(ActionType type, ActionGroup group, GdkEvent* even
         case ACTION_NEW_PAGE_AT_END:
             insertNewPage(this->doc->getPageCount());
             break;
+	case ACTION_EXTEND_RIGHT_MARGIN:
+	    extendRightMargin();
+	    break;
         case ACTION_DELETE_PAGE:
             deletePage();
             break;
@@ -1250,6 +1253,8 @@ void Control::deletePage() {
 }
 
 void Control::insertNewPage(size_t position) { pageBackgroundChangeController->insertNewPage(position); }
+
+void Control::extendRightMargin() { pageBackgroundChangeController->extendRightMargin(); }
 
 void Control::appendNewPdfPages() {
     auto pageCount = this->doc->getPageCount();

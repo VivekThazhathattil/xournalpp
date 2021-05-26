@@ -1190,6 +1190,15 @@
                           </object>
                         </child>
                         <child>
+                          <object class="GtkMenuItem" id="menuJournalExtendRightMargin">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Extend Page Right Margin</property>
+                            <property name="use-underline">True</property>
+                            <signal name="activate" handler="ACTION_EXTEND_RIGHT_MARGIN" swapped="no"/>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkMenuItem" id="menuJournalAddNewPdfPages">
                             <property name="name">menuJournalNewPageAtEnd</property>
                             <property name="visible">True</property>

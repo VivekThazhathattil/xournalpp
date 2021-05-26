@@ -279,6 +279,12 @@ void PageBackgroundChangeController::insertNewPage(size_t position) {
     control->insertPage(page, position);
 }
 
+void PageBackgroundChangeController::extendRightMargin() {
+    // Copy page size
+    PageRef current = control->getCurrentPage();
+    current->setSize(current->getWidth()+100.0, current->getHeight());
+}
+
 void PageBackgroundChangeController::documentChanged(DocumentChangeType type) {}
 
 void PageBackgroundChangeController::pageSizeChanged(size_t page) {}
