@@ -280,10 +280,32 @@ void PageBackgroundChangeController::insertNewPage(size_t position) {
 }
 
 void PageBackgroundChangeController::extendRightMargin() {
-    // Copy page size
+    if (ignoreEvent) {
+        return;
+    }
+
+    control->clearSelectionEndText();
     PageRef current = control->getCurrentPage();
+    if (!current) {
+        return;
+    }
+
+    // set the values for undo/redo
+    auto undoAction = std::make_unique<PageBackgroundChangedUndoAction>(\
+		    current,\
+		    current->getBackgroundType(),\
+		    current->getPdfPageNr(),\
+		    current->getBackgroundImage(),\
+		    current->getWidth(),\
+		    current->getHeight());
+    if (undoAction) {
+        control->getUndoRedoHandler()->addUndoAction(std::move(undoAction));
+    }
+
     current->setSize(current->getWidth()*1.2, current->getHeight());
-    control->firePageSizeChanged(control->getCurrentPageNo());
+    ignoreEvent = true;
+    control->firePageChanged(current->getPdfPageNr());
+    ignoreEvent = false;
 }
 
 void PageBackgroundChangeController::documentChanged(DocumentChangeType type) {}
