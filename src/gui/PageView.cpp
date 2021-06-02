@@ -557,8 +557,10 @@ auto XojPageView::onButtonReleaseEvent(const PositionInputData& pos) -> bool {
         		}
 			double x1, x2, y1, y2;	
 			this->selection->getRectCoords(x1, x2, y1, y2);
-			char* a = pdf->getTextFromSelection(x1, x2, y1, y2);
-			g_message("%s",a);
+			if(pdf){
+				char* a = pdf->getTextFromSelection(x1, x2, y1, y2);
+				g_message("%s",a);
+			}
             delete this->selection;
             this->selection = nullptr;
 
