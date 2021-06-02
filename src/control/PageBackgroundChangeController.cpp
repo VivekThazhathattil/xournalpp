@@ -304,7 +304,7 @@ void PageBackgroundChangeController::extendRightMargin() {
 
     current->setSize(current->getWidth()*1.2, current->getHeight());
     ignoreEvent = true;
-    control->firePageChanged(current->getPdfPageNr());
+    control->firePageSizeChanged(current->getPdfPageNr());
     ignoreEvent = false;
 }
 
