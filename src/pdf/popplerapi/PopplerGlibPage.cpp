@@ -78,3 +78,13 @@ auto PopplerGlibPage::findText(string& text) -> vector<XojPdfRectangle> {
 
     return findings;
 }
+
+auto PopplerGlibPage::getTextFromSelection(double x1, double x2, double y1, double y2) -> char* {
+	PopplerRectangle popRect;
+	popRect.x1 = static_cast<gdouble>(x1);
+	popRect.x2 = static_cast<gdouble>(x2);
+	popRect.y1 = static_cast<gdouble>(y1);
+	popRect.y2 = static_cast<gdouble>(y2);
+	char *a = poppler_page_get_selected_text(page, POPPLER_SELECTION_GLYPH, &popRect);	
+	return a;
+}

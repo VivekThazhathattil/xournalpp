@@ -31,6 +31,7 @@ public:
     virtual void paint(cairo_t* cr, GdkRectangle* rect, double zoom) = 0;
     virtual void currentPos(double x, double y) = 0;
     virtual bool userTapped(double zoom) = 0;
+    virtual void getRectCoords(double &x1, double &x2, double &y1, double &y2) = 0;
 
 private:
 protected:
@@ -57,6 +58,7 @@ public:
     virtual void currentPos(double x, double y);
     virtual bool contains(double x, double y);
     virtual bool userTapped(double zoom);
+    virtual void getRectCoords(double &x1, double &x2, double &y1, double &y2);
 
 private:
     double sx;
@@ -85,6 +87,7 @@ public:
     virtual void currentPos(double x, double y);
     virtual bool contains(double x, double y);
     virtual bool userTapped(double zoom);
+    virtual void getRectCoords(double &x1, double &x2, double &y1, double &y2);
 
 private:
     GList* points;

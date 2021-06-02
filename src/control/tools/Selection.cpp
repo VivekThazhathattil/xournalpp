@@ -55,6 +55,13 @@ auto RectSelection::finalize(PageRef page) -> bool {
     return !this->selectedElements.empty();
 }
 
+void RectSelection::getRectCoords(double &x1, double &x2, double &y1, double &y2) {
+	x1 = this->x1;
+	x2 = this->x2;
+	y1 = this->y1;
+	y2 = this->y2;
+}
+
 auto RectSelection::contains(double x, double y) -> bool {
     if (x < this->x1 || x > this->x2) {
         return false;
@@ -316,4 +323,8 @@ auto RegionSelect::userTapped(double zoom) -> bool {
         }
     }
     return true;
+}
+
+
+void RegionSelect::getRectCoords(double &x1, double &x2, double &y1, double &y2) {
 }

@@ -44,6 +44,7 @@ public:
     virtual void render(cairo_t* cr, bool forPrinting = false) = 0;
 
     virtual vector<XojPdfRectangle> findText(string& text) = 0;
+    virtual char* getTextFromSelection(double x1, double x2, double y1, double y2) = 0;
 
     virtual int getPageId() = 0;
 

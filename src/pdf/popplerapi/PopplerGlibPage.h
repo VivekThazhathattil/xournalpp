@@ -30,6 +30,7 @@ public:
     virtual void render(cairo_t* cr, bool forPrinting = false);  // NOLINT(google-default-arguments)
 
     virtual vector<XojPdfRectangle> findText(string& text);
+    virtual char* getTextFromSelection(double x1, double x2, double y1, double y2);
 
     virtual int getPageId();
 

@@ -540,14 +540,25 @@ auto XojPageView::onButtonReleaseEvent(const PositionInputData& pos) -> bool {
     if (this->selection) {
         if (this->selection->finalize(this->page)) {
             xournal->setSelection(new EditSelection(control->getUndoRedoHandler(), this->selection, this));
-            delete this->selection;
-            this->selection = nullptr;
         } else {
             double zoom = xournal->getZoom();
             if (this->selection->userTapped(zoom)) {
                 SelectObject select(this);
                 select.at(pos.x / zoom, pos.y / zoom);
             }
+        		int pNr = this->page->getPdfPageNr();
+        		XojPdfPageSPtr pdf = nullptr;
+        		if (pNr != -1) {
+        		    Document* doc = xournal->getControl()->getDocument();
+
+        		    doc->lock();
+        		    pdf = doc->getPdfPage(pNr);
+        		    doc->unlock();
+        		}
+			double x1, x2, y1, y2;	
+			this->selection->getRectCoords(x1, x2, y1, y2);
+			char* a = pdf->getTextFromSelection(x1, x2, y1, y2);
+			g_message("%s",a);
             delete this->selection;
             this->selection = nullptr;
 
